@@ -1,69 +1,72 @@
 import React, { Component } from 'react'
-import { Text, View,Button,StyleSheet } from 'react-native'
-import { TouchableOpacity, FlatList } from 'react-native-gesture-handler'
+import { Text, View ,StyleSheet,Image ,TouchableOpacity} from 'react-native'
+import GlobalStyle from '../screens/GlobalStyle'
+import logo from './images/doctor.png'
+import patientLogo from './images/patient.png'
 
 
 
-
-    // pressHandler = () => {
-    //     this.props.navigation.navigate('Details')
-    // }
-
+export default class Home extends Component {
     
-    const DATA = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'First Item',
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Second Item',
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Third Item',
-        },
-      ];
+    navigateToDoctorLogin =() =>
+    {
+        
+    }
 
-      export default function App(navigation) {
+    navigateToPatientLogin =()=>
+    {
+        console.log('aa')
+        const { navigation:navigate } = this.props;
+        navigate.navigate('PatientLogin')
+    }
+    render() {
+        
         return (
-            <View style={StyleSheet.container}>
-                <View >
-                <FlatList
-        data={DATA}
-        style={styles.list}
-        renderItem={({ item }) => (
-        <TouchableOpacity style={styles.Button}
-        onPress={() => navigation.navigate('Details')}
-        >
-            <Text style={{fontSize:18,color:'white'}}>{item.title}</Text>
-            
-        </TouchableOpacity>)}
-      /></View>
+            <View style={GlobalStyle.container}>
+                <View style={styles.body}>
+                    <Text style={styles.who}>Who are you?</Text>
+                    <View style={styles.card}>
+                        <TouchableOpacity
+                            onPress={()=>{const { navigation:navigate } = this.props;
+                            navigate.navigate('DoctorLogin')}}
+                        >
+                            <Image source={logo} style={{width:200, height:200 }} />
+                        </TouchableOpacity>
+                        <Text style={styles.userText}>Doctor</Text>
+                    </View>
+                    
+                    <View style={styles.card}>
+                        <TouchableOpacity
+                            onPress={this.navigateToPatientLogin}
+                        >
+                            <Image source={patientLogo}  style={{width:200, height:200 }}/>
+                        </TouchableOpacity>
+                        <Text style={styles.userText}>Patient</Text>
+                    </View>
+                </View>
             </View>
         )
     }
-
-
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:"center",
-        alignItems:'center'
-    },
-    Button:{
-       backgroundColor:'blue',
-       justifyContent:'center',
-       alignItems:'center',
-       marginBottom:10,
-
-    },
-    list:{
-        flexDirection:'row',
-        width:200,
-        writingDirection:'ltr'
-        
-      //  justifyContent:"space-between"
-    }
 }
+
+const styles = StyleSheet.create(
+    {
+        body:{
+            alignItems:"center"
+            
+        },
+
+        card:{
+            alignItems:"center"
+        },
+        userText:{
+            color:'red',
+            fontSize:20,
+        },
+        who:{
+            color:"red",
+            fontSize:30
+        }
+    }
 )
+
