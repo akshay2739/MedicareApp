@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     },
     card:{
         backgroundColor:'white',
-        width:300,
+        width:'85%',
         padding:10,
         marginBottom:10,
         justifyContent:'space-around',
